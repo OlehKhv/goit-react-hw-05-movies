@@ -7,7 +7,7 @@ import { MovieList, StyledLink } from './Home.styled';
 import { SearchButton, SearchForm, SearchInput } from './Movies.styled';
 
 const Movies = () => {
-    const [searchedMovies, setSearchedMovies] = useState([]);
+    const [searchedMovies, setSearchedMovies] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
@@ -71,7 +71,9 @@ const Movies = () => {
                 </ErrorNotification>
             )}
 
-            {searchedMovies.length > 0 && (
+            {/* {searchedMovies?.length > 0 && !isLoading &&} */}
+
+            {searchedMovies?.length > 0 && !isLoading && (
                 <MovieList>
                     {searchedMovies.map(({ id, title }) => (
                         <li key={id}>
@@ -87,3 +89,5 @@ const Movies = () => {
 };
 
 export default Movies;
+
+// {"page":1,"results":[],"total_pages":1,"total_results":0}

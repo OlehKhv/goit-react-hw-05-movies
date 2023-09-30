@@ -25,6 +25,9 @@ export const Text = styled('p')`
 `;
 
 export const Card = styled('div')`
+    display: flex;
+    gap: 20px;
+    align-items: center;
     padding: 20px;
     margin-bottom: 20px;
     border-bottom: 2px solid grey;

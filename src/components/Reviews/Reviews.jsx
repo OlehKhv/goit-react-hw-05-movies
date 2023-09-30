@@ -22,7 +22,6 @@ const Cast = () => {
 
             try {
                 const data = await getReviews(movieId);
-                console.log(data.results);
 
                 setReviewsList(data.results);
             } catch (error) {

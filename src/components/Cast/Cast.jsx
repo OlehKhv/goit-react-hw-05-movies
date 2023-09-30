@@ -44,13 +44,21 @@ const Cast = () => {
 
             {castList?.length > 0 && (
                 <ul>
-                    {castList.map(({ cast_id, name, character }) => (
-                        <CardActor key={cast_id}>
-                            <img src="/" alt="" />
-                            <Text>{name}</Text>
-                            <Text>Character: {character}</Text>
-                        </CardActor>
-                    ))}
+                    {castList.map(
+                        ({ cast_id, name, character, profile_path }) => (
+                            <CardActor key={cast_id}>
+                                <img
+                                    src={`https://image.tmdb.org/t/p/w500${profile_path}`}
+                                    alt={name}
+                                    width={100}
+                                />
+                                <div>
+                                    <Text>{name}</Text>
+                                    <Text>Character: {character}</Text>
+                                </div>
+                            </CardActor>
+                        )
+                    )}
                 </ul>
             )}
         </>

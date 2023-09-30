@@ -69,17 +69,23 @@ const MovieDetails = () => {
             {movie && (
                 <div>
                     <Card>
-                        <img src={movie.poster_path} alt="" width={300} />
-                        <Title>{movie.title}</Title>
-                        <Text>User score: {userScore()}%</Text>
-                        <SubTitle>Overview</SubTitle>
-                        <Text>{movie.overview}</Text>
-                        <SubTitle>Genres</SubTitle>
-                        <Text>
-                            {movie.genres.map(({ name, id }) => (
-                                <span key={id}>{name} </span>
-                            ))}
-                        </Text>
+                        <img
+                            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                            alt={movie.title}
+                            width={300}
+                        />
+                        <div>
+                            <Title>{movie.title}</Title>
+                            <Text>User score: {userScore()}%</Text>
+                            <SubTitle>Overview</SubTitle>
+                            <Text>{movie.overview}</Text>
+                            <SubTitle>Genres</SubTitle>
+                            <Text>
+                                {movie.genres.map(({ name, id }) => (
+                                    <span key={id}>{name} </span>
+                                ))}
+                            </Text>
+                        </div>
                     </Card>
 
                     <Text>Additional information</Text>
