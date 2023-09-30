@@ -5,6 +5,7 @@ import { useLocation, useSearchParams } from 'react-router-dom';
 import { getMoviesBySearch } from 'services/movies-api';
 import { MovieList, StyledLink } from './Home.styled';
 import { SearchButton, SearchForm, SearchInput } from './Movies.styled';
+import NotFoundNotification from 'components/ErrorNotification/NotFoundNotification';
 
 const Movies = () => {
     const [searchedMovies, setSearchedMovies] = useState(null);
@@ -71,9 +72,15 @@ const Movies = () => {
                 </ErrorNotification>
             )}
 
-            {/* {searchedMovies?.length > 0 && !isLoading &&} */}
+            {searchedMovies?.length === 0 && !isLoading && !error && (
+                <NotFoundNotification>
+                    Sorry, there are no images matching your search query: $
+                    {searchQuery}. Please change your search parameters and try
+                    again.
+                </NotFoundNotification>
+            )}
 
-            {searchedMovies?.length > 0 && !isLoading && (
+            {searchedMovies?.length > 0 && !isLoading && !error && (
                 <MovieList>
                     {searchedMovies.map(({ id, title }) => (
                         <li key={id}>
@@ -89,5 +96,3 @@ const Movies = () => {
 };
 
 export default Movies;
-
-// {"page":1,"results":[],"total_pages":1,"total_results":0}
