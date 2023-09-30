@@ -1,6 +1,6 @@
 import ErrorNotification from 'components/ErrorNotification/ErrorNotification';
 import Loader from 'components/Loader/Loader';
-import { useEffect, useRef, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import {
     useLocation,
     useNavigate,
@@ -82,7 +82,9 @@ const MovieDetails = () => {
                             <Link to={'reviews'}>Reviews</Link>
                         </li>
                     </ul>
-                    <Outlet />
+                    <Suspense fallback={<Loader />}>
+                        <Outlet />
+                    </Suspense>
                 </div>
             )}
         </>
