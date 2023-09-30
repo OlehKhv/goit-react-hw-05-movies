@@ -1,8 +1,10 @@
 import ErrorNotification from 'components/ErrorNotification/ErrorNotification';
 import Loader from 'components/Loader/Loader';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { getMoviesBySearch } from 'services/movies-api';
+import { MovieList, StyledLink } from './Home.styled';
+import { SearchButton, SearchForm, SearchInput } from './Movies.styled';
 
 const Movies = () => {
     const [searchedMovies, setSearchedMovies] = useState([]);
@@ -48,15 +50,17 @@ const Movies = () => {
 
     return (
         <>
-            <form onSubmit={handleSearch}>
-                <input
+            <SearchForm onSubmit={handleSearch}>
+                <SearchInput
                     type="text"
                     onChange={updateQueryString}
                     value={searchQuery}
                     placeholder="Enter movie name"
                 />
-                <button type="submit">🔍Search</button>
-            </form>
+                <SearchButton type="submit">
+                    <span>🔍</span> <span>Search</span>
+                </SearchButton>
+            </SearchForm>
 
             {isLoading && <Loader />}
 
@@ -68,15 +72,15 @@ const Movies = () => {
             )}
 
             {searchedMovies.length > 0 && (
-                <ul>
+                <MovieList>
                     {searchedMovies.map(({ id, title }) => (
                         <li key={id}>
-                            <Link to={`${id}`} state={{ from: location }}>
+                            <StyledLink to={`${id}`} state={{ from: location }}>
                                 {title}
-                            </Link>
+                            </StyledLink>
                         </li>
                     ))}
-                </ul>
+                </MovieList>
             )}
         </>
     );

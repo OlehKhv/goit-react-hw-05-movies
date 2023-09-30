@@ -1,9 +1,3 @@
-// import Home from 'pages/Home';
-// import MovieDetails from 'pages/MovieDetails';
-// import Movies from 'pages/Movies';
-// import NotFound from 'pages/NotFound';
-// import Cast from './Cast/Cast';
-// import Reviews from './Reviews/Reviews';
 import { SharedLayout } from 'pages/SharedLayout';
 import { Route, Routes } from 'react-router-dom';
 

@@ -1,6 +1,7 @@
 import ErrorNotification from 'components/ErrorNotification/ErrorNotification';
 import NotFoundNotification from 'components/ErrorNotification/NotFoundNotification';
 import Loader from 'components/Loader/Loader';
+import { SubTitle, Text } from 'pages/MovieDetails.styled';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getReviews } from 'services/movies-api';
@@ -53,8 +54,8 @@ const Cast = () => {
                 <ul>
                     {reviewsList.map(({ id, author, content }) => (
                         <li key={id}>
-                            <h4>Author: {author}</h4>
-                            <p>{content}</p>
+                            <SubTitle>Author: {author}</SubTitle>
+                            <Text>{content}</Text>
                         </li>
                     ))}
                 </ul>

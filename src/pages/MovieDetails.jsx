@@ -1,14 +1,17 @@
 import ErrorNotification from 'components/ErrorNotification/ErrorNotification';
 import Loader from 'components/Loader/Loader';
 import { Suspense, useEffect, useRef, useState } from 'react';
-import {
-    useLocation,
-    useNavigate,
-    useParams,
-    Link,
-    Outlet,
-} from 'react-router-dom';
+import { useLocation, useNavigate, useParams, Outlet } from 'react-router-dom';
 import { getMovieById } from 'services/movies-api';
+import {
+    AddInfoList,
+    BackButton,
+    Card,
+    SubTitle,
+    Text,
+    Title,
+} from './MovieDetails.styled';
+import { StyledLink } from './Home.styled';
 
 const MovieDetails = () => {
     const [movie, setMovie] = useState(null);
@@ -49,7 +52,10 @@ const MovieDetails = () => {
 
     return (
         <>
-            <button onClick={handleBackToList}>◀Go back</button>
+            <BackButton onClick={handleBackToList}>
+                <span>◀</span>
+                <span>Go back</span>
+            </BackButton>
 
             {isLoading && <Loader />}
 
@@ -62,26 +68,29 @@ const MovieDetails = () => {
 
             {movie && (
                 <div>
-                    <img src={movie.poster_path} alt="" width={300} />
-                    <h2>{movie.title}</h2>
-                    <p>User score: {userScore()}%</p>
-                    <h3>Overview</h3>
-                    <p>{movie.overview}</p>
-                    <h3>Genres</h3>
-                    <p>
-                        {movie.genres.map(({ name, id }) => (
-                            <span key={id}>{name} </span>
-                        ))}
-                    </p>
-                    <p>Additional information</p>
-                    <ul>
+                    <Card>
+                        <img src={movie.poster_path} alt="" width={300} />
+                        <Title>{movie.title}</Title>
+                        <Text>User score: {userScore()}%</Text>
+                        <SubTitle>Overview</SubTitle>
+                        <Text>{movie.overview}</Text>
+                        <SubTitle>Genres</SubTitle>
+                        <Text>
+                            {movie.genres.map(({ name, id }) => (
+                                <span key={id}>{name} </span>
+                            ))}
+                        </Text>
+                    </Card>
+
+                    <Text>Additional information</Text>
+                    <AddInfoList>
                         <li>
-                            <Link to={'cast'}>Cast</Link>
+                            <StyledLink to={'cast'}>Cast</StyledLink>
                         </li>
                         <li>
-                            <Link to={'reviews'}>Reviews</Link>
+                            <StyledLink to={'reviews'}>Reviews</StyledLink>
                         </li>
-                    </ul>
+                    </AddInfoList>
                     <Suspense fallback={<Loader />}>
                         <Outlet />
                     </Suspense>

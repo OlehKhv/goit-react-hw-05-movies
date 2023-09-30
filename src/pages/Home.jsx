@@ -1,8 +1,9 @@
 import ErrorNotification from 'components/ErrorNotification/ErrorNotification';
 import Loader from 'components/Loader/Loader';
 import { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { getTrendingMovies } from 'services/movies-api';
+import { MainTitle, MovieList, StyledLink } from './Home.styled';
 
 const Home = () => {
     const [trendingMovies, setTrendingMovies] = useState([]);
@@ -31,7 +32,7 @@ const Home = () => {
 
     return (
         <>
-            <h1>Trending today</h1>
+            <MainTitle>Trending today</MainTitle>
 
             {isLoading && <Loader />}
 
@@ -42,15 +43,18 @@ const Home = () => {
                 </ErrorNotification>
             )}
 
-            <ul>
+            <MovieList>
                 {trendingMovies.map(({ id, title }) => (
                     <li key={id}>
-                        <Link to={`movies/${id}`} state={{ from: location }}>
+                        <StyledLink
+                            to={`movies/${id}`}
+                            state={{ from: location }}
+                        >
                             {title}
-                        </Link>
+                        </StyledLink>
                     </li>
                 ))}
-            </ul>
+            </MovieList>
         </>
     );
 };

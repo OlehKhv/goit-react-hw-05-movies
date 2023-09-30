@@ -1,8 +1,10 @@
 import ErrorNotification from 'components/ErrorNotification/ErrorNotification';
 import Loader from 'components/Loader/Loader';
+import { Text } from 'pages/MovieDetails.styled';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getCast } from 'services/movies-api';
+import { CardActor } from './Cast.styled';
 
 const Cast = () => {
     const [castList, setCastList] = useState(null);
@@ -43,11 +45,11 @@ const Cast = () => {
             {castList?.length > 0 && (
                 <ul>
                     {castList.map(({ cast_id, name, character }) => (
-                        <li key={cast_id}>
+                        <CardActor key={cast_id}>
                             <img src="/" alt="" />
-                            <p>{name}</p>
-                            <p>Character: {character}</p>
-                        </li>
+                            <Text>{name}</Text>
+                            <Text>Character: {character}</Text>
+                        </CardActor>
                     ))}
                 </ul>
             )}
