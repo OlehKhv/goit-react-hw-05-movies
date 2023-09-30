@@ -1,5 +1,7 @@
+import { ErrorNotificationText } from './Notification.styled';
+
 const ErrorNotification = ({ children }) => {
-    return <p>{children}</p>;
+    return <ErrorNotificationText>{children}</ErrorNotificationText>;
 };
 
 export default ErrorNotification;

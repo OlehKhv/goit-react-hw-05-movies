@@ -1,5 +1,7 @@
+import { NotFoundNotificationText } from './Notification.styled';
+
 const NotFoundNotification = ({ children }) => {
-    return <p>{children}</p>;
+    return <NotFoundNotificationText>{children}</NotFoundNotificationText>;
 };
 
 export default NotFoundNotification;
